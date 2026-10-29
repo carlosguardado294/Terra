@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TERRA</title>
+<style>
+html,body{margin:0;height:100%;background:#0b0f14;color:#cfd8dc;font-family:system-ui,sans-serif}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center}
+canvas{max-width:100%;max-height:92vh;outline:none;background:#000}
+#status{margin:8px;font-size:13px}
+#note{font-size:12px;opacity:.7;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div id="status">Loading...</div>
+<canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+<div id="note">A keyboard is required. Click the world to focus it.</div>
+<script>
+var statusEl=document.getElementById('status');
+var Module={
+canvas:document.getElementById('canvas'),
+print:function(t){console.log(t)},
+printErr:function(t){console.error(t)},
+setStatus:function(t){statusEl.textContent=t;statusEl.style.display=t?'block':'none'}
+};
+Module.canvas.addEventListener('click',function(){Module.canvas.focus()});
+window.addEventListener('keydown',function(e){
+if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','Backspace','Tab'].indexOf(e.key)>=0){e.preventDefault()}
+},{capture:true});
+</script>
+{{{ SCRIPT }}}
+</body>
+</html>
